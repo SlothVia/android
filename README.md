@@ -1,9 +1,13 @@
-# Android & Kotlin 
+# Android & Kotlin
+
 Formation Complète
 
 **Variables**
+==============
 
+>>>>>>
 Pratique
+
 ````kotlin
 var age: Int = 5
 var name: String = "Bob"
@@ -18,8 +22,11 @@ println("$name a $age ans")
 ````
 
 **Strings**
+==============
 
+>>>>>>
 Pratique
+
 ````kotlin
 val name = "Bob"
 val age = 10
@@ -48,8 +55,11 @@ println("""Raw string trim2 :
 ````
 
 **Contrôle de flux : if/else**
+==============
 
+>>>>>>
 Pratique
+
 ````kotlin
 val age = 10
 val name = "Bob"
@@ -89,8 +99,11 @@ val canPlayBasketBall = when (age) {
 ````
 
 **Mutabilité et Nullabilité**
+==============
 
+>>>>>>
 Pratique
+
 ````kotlin
 // Decare a mutable / immutable age
 val minimumAge = 5
@@ -124,8 +137,11 @@ println(name!!.length)
 ````
 
 **Fonctions**
+=============
 
+>>>>>>
 Pratique
+
 ````kotlin
 fun  isOldEnough (age: Int): Boolean = age >=5
 
@@ -151,6 +167,7 @@ describePeople(name, age, height, detail = "c'est un détail")
 ````
 
 **Tableaux**
+==============
 
 Création via constructeur
 
@@ -158,11 +175,15 @@ Création via constructeur
 val tableau = Array <Type>(Taille) {valeur}
 
 ````
+
 *Exemple*
+
 ````kotlin
 val ages = Array<Int>(10) { 0 }
 //Un tableau de nombres de taille 10 et ayant comme valeur par défaut 0
 ````
+
+===========================================
 
 Création via factory function
 
@@ -172,10 +193,12 @@ val tableau = arrayOf (valeur1, valeur2,)
 ````
 
 *Exemple*
+
 ````kotlin
 val ages = arrayOf(4, 7, 15)
 //Un tableau d'entier de taille 3
 ````
+
 ===========================================
 
 Récupérer une valeur
@@ -184,6 +207,7 @@ Récupérer une valeur
 ages.get(index)
 ages[index]
 ````
+===========================================
 
 Modifier une valeur
 
@@ -191,24 +215,125 @@ Modifier une valeur
 ages.set(index, valeur)
 ages[index] = valeur
 ````
-
+>>>>>>
 Pratique
 
 ````kotlin
-        val array: Array<Int> = Array<Int>(10) {0}
-        println(Arrays.toString(array))
+val array: Array<Int> = Array<Int>(10) {0}
+println(Arrays.toString(array))
 
-        val name = Array<String>(5){""}
-        name.set(0,"Bob")
-        println(name.get(0))
+val name = Array<String>(5){""}
+name.set(0,"Bob")
+println(name.get(0))
 
-        name[1] = "John"
-        println(name[1])
+name[1] = "John"
+println(name[1])
+    
+val ages = arrayOf(4, 7, 99)
+val indexAge = 2
+println("Le 3ème élément est : ${ages[indexAge]}")
 
-        val ages = arrayOf(4, 7, 99)
-        val indexAge = 2
-        println("Le 3ème élément est : ${ages[indexAge]}")
-
-        ages[indexAge] = 29
-        println("Le 3ème élément est à présent :  ${ages[indexAge]}")
+ages[indexAge] = 29
+println("Le 3ème élément est à présent :  ${ages[indexAge]}")
 ````
+
+**Contrôle de flux : for**
+==========================
+
+For sur un range (simple)
+
+````kotlin
+for (i in 1..5){
+    println(i)
+}
+
+//Console 
+1
+2
+3
+4
+5
+````
+
+==========================
+
+For sur un range (step)
+
+````kotlin
+for (i in 1..5 step 2){
+    println(i)
+}
+
+//Console 
+1
+3
+5
+````
+
+==========================
+
+For sur un range (downTo)
+
+````kotlin
+for (i in 5 downTo 1){
+    println(i)
+}
+
+//Console 
+5
+4
+3
+2
+1
+````
+
+==========================
+
+For sur un range (down To + step)
+
+````kotlin
+for (i in 5 downTo 1 step 2) {
+    println(i)
+}
+
+//Console
+5
+3
+1
+````
+
+==========================
+
+Foreach sur une collection
+
+````kotlin
+for (item in collection) {
+    //do something with item
+}
+````
+
+==========================
+
+Continue
+
+````kotlin
+for (item in collection){
+    if (condition) {
+    continue
+    }
+    //do something with item
+}
+````
+
+>>>>>>
+Pratique
+
+````kotlin
+
+````
+
+
+
+
+
+
