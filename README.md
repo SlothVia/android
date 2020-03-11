@@ -329,8 +329,150 @@ for (item in collection){
 Pratique
 
 ````kotlin
+val names: Array<String> = arrayOf("Bob", "Bobette", "Jane", "Mike")
+for (i in 0..names.size-1){
+            println(i)
+        }
+
+//Console
+0
+1
+2
+3
+````
+
+````kotlin
+val names: Array<String> = arrayOf("Bob", "Bobette", "Jane", "Mike")
+for (name in names) {
+            println(name)
+        }
+
+//Console
+"Bob"
+"Bobette"
+"Jane"
+"Mike"
+````
+
+````kotlin
+val names: Array<String> = arrayOf("Bob", "Bobette", "Jane", "Mike")
+for ((index, name) in names.withIndex()) {
+            println("$name est à l'index $index")
+        }
+
+//Console
+"Bob est à l'index 0"
+"Bobette est à l'index 1"
+"Jane est à l'index 2"
+"Mike est à l'index 3"
+````
+
+````kotlin
+val names: Array<String> = arrayOf("Bob", "Bobette", "Jane", "Mike")
+for (name in names) {
+            if (name =="Jane"){
+                println("$name est absent(e)")
+                continue
+            }
+            println("$name est présent(e)")
+        }
+
+//Console
+"Bob est présent(e)"
+"Bobette est présent(e)"
+"Jane est absent(e)"
+"Mike est présent(e)"
+````
+
+**Contrôle de flux: while**
+===========================
+
+While
 
 ````
+while (condition){
+    ...
+}
+````
+
+==========================
+
+Do while
+
+````kotlin
+do  {
+    x = getX()
+}while (x > 10)
+````
+
+==========================
+
+While + Break
+
+````kotlin
+while (condition) {
+    //action 1 
+    if (breakCondition) {
+    break
+    }
+    //action 2
+}
+````
+
+>>>>>>
+Pratique
+
+````kotlin
+var unreadEmailCount = 3
+
+        while (unreadEmailCount >0){
+            println("Vérification des emails en cours...")
+            println("Vous avez $unreadEmailCount emails non lus")
+            unreadEmailCount--
+        }
+
+//Console
+"Vérification des emails en cours..."
+"Vous avez 3 emails non lus"
+"Vérification des emails en cours..."
+"Vous avez 2 emails non lus"
+"Vérification des emails en cours..."
+"Vous avez 1 emails non lus"        
+````
+
+````kotlin
+var unreadEmailCount = 0
+do {
+      println("Vérification des emails en cours...")
+      println("Vous avez $unreadEmailCount emails non lus")
+      unreadEmailCount--
+    }while (unreadEmailCount >0)
+
+//Console
+"Vérification des emails en cours..."
+"Vous avez 0 emails non lus"        
+````
+
+````kotlin
+var unreadEmailCount = 3
+var notificationEnabled: Boolean = false
+
+do {
+     println("Vérification des emails en cours...")
+     if (!notificationEnabled) {
+         break
+     }
+     println("Vous avez $unreadEmailCount emails non lus")
+     unreadEmailCount--
+   }while (unreadEmailCount >0)
+   
+//Console
+"Vérification des emails en cours..."
+````
+
+**Les packages**
+================
+
 
 
 

@@ -12,10 +12,17 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val name: Array<String> = arrayOf("Bob", "Bobette", "Jane", "Mike")
-        for (i in 0..name.size-1){
-            println(i)
-        }
+        var unreadEmailCount = 3
+        var notificationEnabled: Boolean = false
+
+        do {
+            println("Vérification des emails en cours...")
+            if (!notificationEnabled) {
+                break
+            }
+            println("Vous avez $unreadEmailCount emails non lus")
+            unreadEmailCount--
+        }while (unreadEmailCount >0)
 
     }
 }
