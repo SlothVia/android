@@ -2,8 +2,11 @@
 
 Formation Complète
 
-**Variables**
-==============
+**Section 1 : Kotlin : découverte du langage**
+========================================
+
+## Variables
+
 
 >>>>>>
 Pratique
@@ -21,8 +24,8 @@ age *= 2
 println("$name a $age ans")
 ````
 
-**Strings**
-==============
+## Strings
+
 
 >>>>>>
 Pratique
@@ -54,8 +57,8 @@ println("""Raw string trim2 :
 """.trimMargin(">"))
 ````
 
-**Contrôle de flux : if/else**
-==============
+## Contrôle de flux : if/else
+
 
 >>>>>>
 Pratique
@@ -98,8 +101,8 @@ val canPlayBasketBall = when (age) {
             }      
 ````
 
-**Mutabilité et Nullabilité**
-==============
+## Mutabilité et Nullabilité
+
 
 >>>>>>
 Pratique
@@ -136,8 +139,8 @@ val nameLengthForced: Int = nullableName!!.length
 println(name!!.length)
 ````
 
-**Fonctions**
-=============
+## Fonctions
+
 
 >>>>>>
 Pratique
@@ -166,8 +169,8 @@ height = 1.8F
 describePeople(name, age, height, detail = "c'est un détail")
 ````
 
-**Tableaux**
-==============
+## Tableaux
+
 
 Création via constructeur
 
@@ -237,8 +240,8 @@ ages[indexAge] = 29
 println("Le 3ème élément est à présent :  ${ages[indexAge]}")
 ````
 
-**Contrôle de flux : for**
-==========================
+## Contrôle de flux : for
+
 
 For sur un range (simple)
 
@@ -384,8 +387,8 @@ for (name in names) {
 "Mike est présent(e)"
 ````
 
-**Contrôle de flux: while**
-===========================
+## Contrôle de flux: while
+
 
 While
 
@@ -470,12 +473,429 @@ do {
 "Vérification des emails en cours..."
 ````
 
-**Les packages**
-================
+## Les packages
 
 
+Visibilité dans un package
+
+*Visible partout* (défaut)
+
+````kotlin
+public val name = value
+````
+
+==========================
+
+*Visible uniquement dans le fichier*
+
+````kotlin
+private val name = value
+````
+
+==========================
+
+Import spécifique
+
+````kotlin
+import training.androidkotlin.helloworld.common.name
+````
+
+==========================
+
+Import global
+
+````kotlin
+import training.androidkotlin.helloworld.common.*
+````
+
+**Section 2: Kotlin : programmation orientée objet**
+========================================
 
 
+## Introduction
 
 
+Objet dans la vie réelle
 
+- Un objet a des propriétés
+- Un objet peut faire des actions
+- Un objet peut intéragir avec d'autres objets
+
+Objet en programmation
+
+- Propriétés = variables (ou variables mambres)
+- Actions = fonctions (ou méthodes)
+- Interaction avec d'autre objet = appel d'une méthode sur cet objet
+
+* Quand on le définit, c'est une class
+* Quand on l'utilise, c'est un objet
+
+
+==========================
+
+Syntaxe de déclaration
+
+````kotlin
+class MyClass (val var1:Int) {
+    fun myMethod(){
+        //incredible stuff
+    }
+}
+````
+
+==========================
+
+Utilisation de la classe
+
+````kotlin
+val instance = MyClass(5)
+
+instance.myMethod()
+
+val temp = instance.var1
+````
+
+>>>>>>
+Pratique
+
+````kotlin
+class Car (val wheelsCount:Int = 4)
+
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val car = Car()
+        println("Nombre de roues de la voiture: ${car.wheelsCount}")
+
+    }
+}
+
+//Console
+"Nombre de roues de la voiture : 4"
+````
+
+````kotlin
+class Car (val wheelsCount:Int = 4){
+    fun honk() {
+        println("Pouet")
+    }
+}
+
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val car = Car()
+        car.honk()
+    }
+}
+
+//Console
+"Pouet"
+````
+
+````kotlin
+class Car (val wheelsCount:Int = 4){
+    fun honkForWheels() {
+        println("Honking for wheels")
+        for (i in 0 ..wheelsCount){
+            honk()
+        }
+    }
+}
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val car = Car()
+        car.honkForWheels()
+    }
+}
+
+//Console
+"Honking for wheels" 
+"Pouet"
+"Pouet"
+"Pouet"
+"Pouet"
+````
+
+## Constructeur
+
+Constructeur primaire
+
+````kotlin
+class MyClass(val a:Int, var b: Int)
+
+class MyClass constructor(val a:Int, val b:Int)
+````
+
+==========================
+
+Bloc d'initialisation
+
+````kotlin
+class MyClass(val a:Int, var b:Int){
+    init {
+        if (a > 0){
+            b = 5
+        }
+    }
+}
+````
+
+==========================
+
+Constructeur secondaire
+
+````kotlin
+class MyClass(val a:Int, var b:Int) {
+    constructor(a:Int) : this(a, 10)
+    constructor() : this(0, 10)
+}
+````
+
+>>>>>>
+Pratique
+
+````kotlin
+class User(val name:String,
+           val age:Int,
+           val height: Float) {
+
+    val canPlayBasketBall = age > 5 && height > 1.50F
+
+    init {
+        val basketString = when (canPlayBasketBall) {
+            true -> "est dans l'équipe de basket"
+            false -> "ne peut pas jouer au basket"
+        }
+        println("Info user : $name, $age, $basketString")
+    }
+
+    constructor(name:String) : this(name, 5, 1.20F)
+}
+
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val bob = User("Bob", 10 ,1.60F)
+        val bobette = User("Bobette")
+    }
+}
+
+//Console 
+"Bob, 10, est dans l'équipe de basket"
+"Bobette, 5, ne peut pas jouer au basket"
+````
+
+## Héritage
+
+Famille
+
+- Un objet parent peut transmettre des caractéristiques à un objet
+  enfant
+- L'objet enfant hérite /dérive de l'objet parent
+
+==========================
+
+Héritage en Kotlin
+
+- Par défaut, aucune classe ne peut être dérivée
+- Il faut marquer la classe comme "ouverte à l'héritage"
+- La classe enfant explicite son lien avec la classe parent
+- Pour une classe enfant, une seule classe parent autorisée
+
+==========================
+
+Syntaxe d'une classe parent
+
+````kotlin
+open class Parent
+````
+
+==========================
+
+Syntaxe d'une classe enfant
+
+````kotlin
+class Child : Parent()
+````
+
+==========================
+
+Appel d'un constructeur parent
+
+````kotlin
+open class Parent(val var1: Int)
+class Child : Parent(4)
+````
+
+>>>>>>
+Pratique
+
+````kotlin
+open class Vehicule(val wheelsCount:Int)
+
+class Car : Vehicule(4)
+
+class Motorcycle : Vehicule(2)
+
+
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val car = Car()
+        println("Nombre de roues: ${car.wheelsCount}")
+
+        val motorcycle = Motorcycle()
+        println("Nombre de roues: ${motorcycle.wheelsCount}")
+    }
+}
+
+//Console
+"Nombre de roues : 4"
+"Nombre de roues : 2"
+````
+
+````kotlin
+open class Vehicule(val wheelsCount:Int){
+    fun showWheels() {
+        println("Nombre de roues: ${wheelsCount}")
+    }
+}
+
+class Car : Vehicule(4)
+
+class Motorcycle : Vehicule(2)
+
+
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val car = Car()
+        car.showWheels()
+
+        val motorcycle = Motorcycle()
+        motorcycle.showWheels()
+    }
+}
+
+//Console
+"Nombre de roues : 4"
+"Nombre de roues : 2"
+````
+
+````kotlin
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        var vehicule : Vehicule = Car()
+        vehicule.showWheels()
+
+        vehicule = Motorcycle()
+        vehicule.showWheels()
+    }
+}
+
+//Console
+"Nombre de roues : 4"
+"Nombre de roues : 2"
+````
+
+## Polymorphisme
+
+Polymorphisme
+
+- Hériter d'une action parent, mais la faire différement
+- La méthode a donc plusieurs formes (elle est polymorphe)
+- Si une classe enfant modifie une action, elle surcharge la méthode
+
+Polymorphisme en Kotlin
+
+- Par défaut, aucune méthode ne peut être surchargée
+- Il faut marquer la méthode comme "ouverte à la surcharge"
+- La méthode enfant explicite la surcharge avec la méthode parente
+
+
+Syntaxe de surcharge de méthodes
+
+````kotlin
+````kotlin
+open class Parent {
+    open fun myMethod() {
+        print("Hello from parent")
+    }
+}
+
+class Child : Parent() {
+    override fun myMethod() {
+        println("Hello from child")
+    }
+}
+````
+
+>>>>>>
+Pratique
+
+````kotlin
+open class Vehicule(val wheelsCount:Int){
+    fun showWheels() {
+        println("Nombre de roues: ${wheelsCount}")
+    }
+
+    open fun honk() {
+        println("Pas de klaxon")
+    }
+}
+
+class Car : Vehicule(4){
+    override fun honk() {
+        println("Pouet!")
+    }
+}
+
+class Motorcycle : Vehicule(2) {
+    override fun honk() {
+        println("Tsouin!")
+    }
+}
+
+
+class MainActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        var vehicule : Vehicule = Car()
+        vehicule.showWheels()
+        vehicule.honk()
+
+        vehicule = Motorcycle()
+        vehicule.showWheels()
+        vehicule.honk()
+    }
+}
+
+//Console 
+"Nombre de roues : 4"
+"Pouet!"
+"Nombre de roues : 2"
+"Tsouin!"
+````
+
+## Encapsulation
+
+Définition

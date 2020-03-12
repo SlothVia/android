@@ -6,24 +6,41 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
+open class Vehicule(val wheelsCount:Int){
+    fun showWheels() {
+        println("Nombre de roues: ${wheelsCount}")
+    }
+
+    open fun honk() {
+        println("Pas de klaxon")
+    }
+}
+
+class Car : Vehicule(4){
+    override fun honk() {
+        println("Pouet!")
+    }
+}
+
+class Motorcycle : Vehicule(2) {
+    override fun honk() {
+        println("Tsouin!")
+    }
+}
+
 
 class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var unreadEmailCount = 3
-        var notificationEnabled: Boolean = false
+        var vehicule : Vehicule = Car()
+        vehicule.showWheels()
+        vehicule.honk()
 
-        do {
-            println("Vérification des emails en cours...")
-            if (!notificationEnabled) {
-                break
-            }
-            println("Vous avez $unreadEmailCount emails non lus")
-            unreadEmailCount--
-        }while (unreadEmailCount >0)
-
+        vehicule = Motorcycle()
+        vehicule.showWheels()
+        vehicule.honk()
     }
 }
 
